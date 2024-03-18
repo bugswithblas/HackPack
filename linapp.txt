@@ -45,3 +45,12 @@ cat /etc/crontab
 cat /etc/anacrontab
 cat /var/spool/cron/crontabs/root
 
+----------------------------------------------------------------------------------------------------------------------
+
+https://github.com/DominicBreuker/pspy/blob/master/README.md
+cd /var/tmp/
+File Transfer --> pspy32
+File Transfer --> pspy64
+chmod 755 pspy32 pspy64
+./pspy<32/64>
+
