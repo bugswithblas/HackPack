@@ -4,6 +4,7 @@ cat /etc/*-release
 cat /etc/lsb-release      #DEBIAN
 cat /etc/redhat-release   #REDHAT
 
+-------------------------------------------------------------------------------------------------------------------------
 
 #KERNEL
 cat /proc/version
@@ -13,6 +14,7 @@ rpm -q kernel
 dmesg | grep Linux
 ls /boot | grep vmlinuz-
 
+-------------------------------------------------------------------------------------------------------------------------
 
 #ENVIRONMENT
 cat /etc/profile
