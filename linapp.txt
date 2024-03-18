@@ -1,3 +1,17 @@
+which gcc
+which cc
+which python
+which perl
+which wget
+which curl
+which fetch
+which nc
+which ncat
+which nc.traditional
+which socat
+
+----------------------------------------------------------------------------------------------------------------------
+
 ps aux
 ps -ef
 top
@@ -7,6 +21,7 @@ ps -ef | grep root
 ps aux | grep -v root
 ps -ef | grep -v root
 
+----------------------------------------------------------------------------------------------------------------------
 
 ls -alh /usr/bin/
 ls -alh /sbin/
@@ -15,18 +30,7 @@ rpm -qa
 ls -alh /var/cache/apt/archivesO
 ls -alh /var/cache/yum/
 
-
-cat /etc/syslog.conf
-cat /etc/chttp.conf
-cat /etc/lighttpd.conf
-cat /etc/cups/cupsd.conf
-cat /etc/inetd.conf
-cat /etc/apache2/apache2.conf
-cat /etc/my.conf
-cat /etc/httpd/conf/httpd.conf
-cat /opt/lampp/etc/httpd.conf
-ls -aRl /etc/ | awk '$1 ~ /^.*r.*/
-
+----------------------------------------------------------------------------------------------------------------------
 
 crontab -l
 ls -alh /var/spool/cron
@@ -41,8 +45,3 @@ cat /etc/crontab
 cat /etc/anacrontab
 cat /var/spool/cron/crontabs/root
 
-
-grep -i user [filename]
-grep -i pass [filename]
-grep -C 5 "password" [filename]
-find . -name "*.php" -print0 | xargs -0 grep -i -n "var $password" 
