@@ -1,0 +1,2 @@
+https://book.hacktricks.xyz/pentesting-web/file-inclusion/lfi2rce-via-phpinfo
+#LFI
