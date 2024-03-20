@@ -1,0 +1,12 @@
+#Network scan
+nmap -sL 192.168.X.0/24
+nmap -sn 192.168.X.0/24
+
+#UDP
+sudo nmap -sU -sV --version-intensity 0 -F -n -T4 $RHOST
+sudo nmap -sU -sV -sC -F -n -Pn $RHOST
+
+#TCP
+nmap -sV -sC -O -p- -n -Pn $RHOST
+nmap -sV -O -T4 -n -Pn -sC $RHOST --open
+sudo nmap -sV -sC -O -T4 -n -Pn -p- $RHOST --open
