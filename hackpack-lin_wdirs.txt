@@ -1,0 +1,7 @@
+/tmp
+/var/tmp
+/dev/shm
+/dev/mqueue
+
+#Find ones
+find / -maxdepth 3 -type d -perm -777 2>/dev/null
