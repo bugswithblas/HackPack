@@ -1,0 +1,15 @@
+nmap 192.168.X.X --script=smb-enum*
+nmap 192.168.X.X --script=smb-vuln*
+nmap 192.168.X.X --script=smb-os*
+
+#SHARES
+# Will list all shares
+smbclient -L \\\\192.168.1.101\\
+
+# if getting error "protocol negotiation failed: NT_STATUS_CONNECTION_DISCONNECTED"
+smbclient -L \\$ip --option='client min protocol=NT1'
+
+# List all files recursly
+smbclient //HOST/PATH -c 'recurse;ls'
+
+nmap --script smb-enum-shares -p 139,445 $ip
