@@ -1,0 +1,38 @@
+https://gabb4r.gitbook.io/oscp-notes/password-attacks/cracking-password
+#HASH IDENTIFY
+hash-identifier
+hashid
+Online:
+  https://www.tunnelsup.com/hash-analyzer/
+  http://www.onlinehashcrack.com/hash-identification.php
+  https://md5hashing.net/hash_type_checker
+  https://crackstation.net/
+
+#MD5
+john --wordlist=/usr/share/wordlists/rockyou.txt -format=Raw-MD5 /root/Desktop/john.txt
+
+#/etc/shadow
+$ echo '$6$Tb/euwmK$OXA.dwMeOAcopwBl68boTG5zi65wIHsc84OWAIye5VITLLtVl aXvRDJXET..it8r.jbrlpfZeMdwD3B0fGxJI0' > hash.txt'
+$ john --format=sha512crypt --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
+
+#shadow+passwd
+$ unshadow passwd-file.txt shadow-file.txt > unshadowed.txt
+$ john --rules --wordlist=wordlist.txt unshadowed.txt
+
+#id_rsa
+ssh2john id_rsa > id_rsa.hash
+john --wordlist=darkweb2017-top10.txt id_rsa.hash
+
+#SAM Files
+john --wordlist=/usr/share/john/password.lst /root/Desktop/hashes.txt
+
+#NTLM
+Format:USUARIO:ID:HASH_LM:HASH_NT:::
+joHn --wordlist=/usr/share/wordlists/rockyou.txt --fomrat=NT file_NTLM.hashes
+hashcat -a 0 -m 1000 --username file_NTLM.hashes /usr/share/wordlists/rockyou.txt --potfile-path salida_NT.pot
+
+
+#KEEPASS
+keepass2john Database.kdbx > keepass.hash
+REMOVE DATABASE NAME FROM BEGINNING IN HASH
+hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force
