@@ -1,0 +1,61 @@
+#LEGACY
+net user /domain
+net user JOHN /domain
+net group /domain
+net group "Sales" /domain
+
+------------------------------------------------------------------------------------------------------------------------
+
+#POWERVIEW
+
+Import-Module .\PowerView.ps1
+Get-NetDomain
+Get-NetUser | select cn
+Get-NetUser | select cn,pwdlastset,lastlogon
+Get-NetGroup | select cn
+Get-NetGroup "Sales Department" | select member
+Get-NetComputer
+Get-NetComputer | select operatingsystem,dnshostname
+Find-LocalAdminAccess
+
+#Perm for NetSession API : SrvsvcSessionInfo
+Get-Acl -Path HKLM:SYSTEM\CurrentControlSet\Services\LanmanServer\DefaultSecurity\ | fl
+Get-NetSession -ComputerName client74 -Verbose
+
+#Like Get-NetSession but not need NetSession API
+.\PsLoggedon.exe \\files04
+
+#SPNs 
+#Check spn for found user
+setspn -L
+setspn -L iis_service
+
+Get-NetUser -SPN | select samaccountname,serviceprincipalname
+
+# Check user permissions
+Get-ObjectAcl -Identity stephanie
+
+#Powerview convert SID
+Convert-SidToName S-1-5-21-1987370270-658905905-1781884369-1104
+
+#Get GenericALL perm on Group objects
+Get-ObjectAcl -Identity "Management Department" | ?
+{$_.ActiveDirectoryRights -eq "GenericAll"} | select
+SecurityIdentifier,ActiveDirectoryRights
+
+#Domain Shares
+Find-DomainShare
+
+------------------------------------------------------------------------------------------------------------------------
+
+#BLOODHOUND
+  
+target:
+Import-Module ./SharpHound.exe
+Invoke-BloodHound
+Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\mary.williams\Desktop\ -OutputPrefix "oscp audit"
+
+kali:
+sudo neo4j start
+bloodhound
+
