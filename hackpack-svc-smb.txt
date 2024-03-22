@@ -13,3 +13,10 @@ smbclient -L \\$ip --option='client min protocol=NT1'
 smbclient //HOST/PATH -c 'recurse;ls'
 
 nmap --script smb-enum-shares -p 139,445 $ip
+nmap -v -p 139,445 --script smb-os-discovery $ip
+
+#SCAN FOR SHARES
+sudo nbtscan -r 192.168.50.0/24
+
+#from windows
+net view \\dc01 /all

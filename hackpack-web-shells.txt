@@ -1,0 +1,9 @@
+kali@kali:~$ ls -la /usr/share/webshells
+
+drwxr-xr-x 2 root root 4096 Feb 11 01:58 asp
+drwxr-xr-x 2 root root 4096 Apr 25 07:25 aspx
+drwxr-xr-x 2 root root 4096 Feb 11 01:58 cfm
+drwxr-xr-x 2 root root 4096 Apr 25 07:06 jsp
+lrwxrwxrwx 1 root root 19 Feb 11 02:00 laudanum -> /usr/share/laudanum
+drwxr-xr-x 2 root root 4096 Feb 11 01:58 perl
+drwxr-xr-x 3 root root 4096 Feb 11 01:58 php

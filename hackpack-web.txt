@@ -7,7 +7,8 @@ nikto -h 192.168.X.X
 
 #FUZZING
 ffuf -c -w /usr/share/seclists/Discovery/Web-Content/raft-large-directories -u http://192.168.X.X/FUZZ -fc 401
-ffuf -w /opt/dirsearch/big.txt -u http://192.168.X.X/FUZZ -e .asp,.aspx,.txt 
+ffuf -w /usr/share/wordlists/dirb/big.txt -u http://192.168.X.X/FUZZ -e .asp,.aspx,.txt 
+ffuf -w /usr/share/wordlists/dirb/big.txt -u http://192.168.X.X/FUZZ/v1
 
 #WPSCAN
 wpscan --url http://192.168.X.X --enumerate vp,vt --plugins-detection aggressive

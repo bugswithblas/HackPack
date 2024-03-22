@@ -22,13 +22,3 @@ socat -ddd TCP-LISTEN:2345,fork TCP:RHOST:5432
 ssh -N -L 0.0.0.0:4455:172.16.50.217:445 database_admin@10.4.50.215
 
 
-#HTTP FWD WITH CHISEL
-#kali
-./chisel server --reverse --port 8888
-
-
-#windows-client
-.\chisel.exe client 192.168.45.223:8888 R:3306:localhost:3306
-
-#linux-client
-chisel client 192.168.118.4:8888 R:socks > /dev/null 2>&1 &
