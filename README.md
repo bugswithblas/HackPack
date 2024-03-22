@@ -18,3 +18,8 @@ function hackpack() {
 compdef _hackpack_completion hackpack
 EOT
 ```
+
+3. Reload .zshrc
+```
+source ~/.zshrc
+```
