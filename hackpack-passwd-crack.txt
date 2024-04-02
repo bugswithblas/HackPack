@@ -36,3 +36,9 @@ hashcat -a 0 -m 1000 --username file_NTLM.hashes /usr/share/wordlists/rockyou.tx
 keepass2john Database.kdbx > keepass.hash
 REMOVE DATABASE NAME FROM BEGINNING IN HASH
 hashcat -m 13400 keepass.hash /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/rockyou-30000.rule --force
+
+
+#Generate wordlist
+hashcat --force --stdout list.txt -r /usr/share/hashcat/rules/best64.rule
+hashcat --force --stdout list.txt -r /usr/share/hashcat/rules/best64.rule -r /usr/share/hashcat/rules/toggles1.rule
+| sort -u | awk 'length($0) > 8' | uniq

@@ -1,2 +1,6 @@
+sudo version:
+1.8.2 to 1.8.31.p2
+1.9.0 to 1.9.5p1
+
 https://github.com/worawit/CVE-2021-3156/tree/main
 

@@ -1,0 +1,17 @@
+https://wadcoms.github.io/#
+
+#LEGACY
+net user /domain
+net user JOHN /domain
+net group /domain
+net group "Sales" /domain
+
+
+#Enumerate DNS
+gobuster dns -d domain.local -t 25 -w /opt/Seclist/Discovery/DNS/subdomain-top2000.txt
+
+
+#Null/Guest SMB
+enum4linux -a -u "" -p "" <DC IP> && enum4linux -a -u "guest" -p "" <DC IP>
+smbmap -u "" -p "" -P 445 -H <DC IP> && smbmap -u "guest" -p "" -P 445 -H <DC IP>
+smbclient -U '%' -L //<DC IP> && smbclient -U 'guest%' -L //

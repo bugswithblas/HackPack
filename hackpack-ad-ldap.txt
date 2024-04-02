@@ -1,0 +1,13 @@
+#Enum ldap
+nmap -n -sV --script "ldap* and not brute" -p 389 <DC IP>
+
+#Anonymous access
+ldapsearch -H ldaps://company.com:636/ -x -s base -b '' "(objectClass=*)" "*" +
+
+#Query only users
+ldapsearch -H ldaps://company.com:636/ -x -b 'DC=domain,DC=com' "(objectClass=Person)"
+
+ldapsearch -h IP -x -s base namingcontexts
+
+#Get all info
+ldapsearch -h IP -x -b "DC=domain,DC=com"

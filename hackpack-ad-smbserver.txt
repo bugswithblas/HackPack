@@ -1,0 +1,1 @@
+sudo impacket-smbserver kali . -smb2support

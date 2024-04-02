@@ -1,0 +1,20 @@
+./kerbrute_linux_amd64 userenum -d lab.ropnop.com --dc 10.10.10.10 usernames.txt 
+                                                                    /usr/share/wordlists/seclists/xato-net-10-million-username.txt
+
+nmap -p 88 --script=krb5-enum-users --script-args="krb5-enum-users.realm='DOMAIN'" <IP>
+Nmap -p 88 --script=krb5-enum-users --script-args krb5-enum-users.realm='<domain>',userdb=/root/Desktop/usernames.txt <IP>
+
+crackmapexec smb domain.com  -u '' -p '' --users | awk '{print $4}' | uniq
+crackmapexec smb IP -u users.txt -p passwd.txt --continue-on-success
+
+
+#rpcclient
+rpcclient -U '' IP 
+enumdomusers #all domain users
+
+# Users' RIDs-forced
+for i in $(seq 500 1100); do
+    rpcclient -N -U "" [IP_ADDRESS] -c "queryuser 0x$(printf '%x\n' $i)" | grep "User Name\|user_rid\|group_rid" && echo "";
+done
+
+# samrdump.py can also serve this purpose

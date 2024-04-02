@@ -1,0 +1,10 @@
+#BLOODHOUND
+  
+target:
+Import-Module ./SharpHound.exe
+Invoke-BloodHound
+Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\mary.williams\Desktop\ -OutputPrefix "oscp audit"
+
+kali:
+sudo neo4j start
+bloodhound

