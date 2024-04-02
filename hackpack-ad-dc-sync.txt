@@ -1,4 +1,9 @@
 #DC Sync
+To launch such a replication, a user needs to have the:
+Replicating Directory Changes
+Replicating Directory Changes All
+Replicating Directory Changes in Filtered Set 
+
 #Check user with powerview
 Get-ObjectAcl -DistinguishedName "dc=dollarcorp,dc=moneycorp,dc=local" -ResolveGUIDs | ?{($_.ObjectType -match 'replication-get') -or ($_.ActiveDirectoryRights -match 'GenericAll') -or ($_.ActiveDirectoryRights -match 'WriteDacl')}
 

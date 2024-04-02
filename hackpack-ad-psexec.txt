@@ -1,0 +1,7 @@
+In order to execute the command remotely, PsExec performs the following tasks:
+• Writes psexesvc.exe into the C: directory
+• Creates and spawns a service on the remote host
+• Runs the requested program/command as a child process of psexesvc.exe
+
+
+./PsExec64.exe -i \\FILES04 -u corp\jen -p Nexus123! cmd
