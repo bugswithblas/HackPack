@@ -1,7 +1,8 @@
 # HackPack
 1. Clone repo
 ```
-git clone https://github.com/bgutowski/HackPack.git /usr/local/bin
+sudo mkdir /usr/local/bin/hackpack
+git clone https://github.com/bgutowski/HackPack.git /usr/local/bin/hackpack
 ```
 
 2. Edit .zshrc
