@@ -9,11 +9,11 @@ sudo git clone https://github.com/bgutowski/HackPack.git /usr/local/bin/hackpack
 ```
 cat <<EOT >> ~/.zshrc
 function _hackpack_completion() {
-  _files -W /usr/local/bin/HackPack -g 'hackpack-*'
+  _files -W /usr/local/bin/hackpack -g 'hackpack-*'
 }
 
 function hackpack() {
-  cat /usr/local/bin/HackPack/$1
+  cat /usr/local/bin/hackpack/$1
 }
 
 compdef _hackpack_completion hackpack
