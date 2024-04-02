@@ -1,0 +1,46 @@
+We need to start monitoring the system if possible while performing our enumeration...
+In other words:
+"S1REN... Is privilege escalation going to come from some I/O file operations being done by some script on the system?"
+https://github.com/DominicBreuker/pspy/blob/master/README.md
+cd /var/tmp/
+File Transfer --> pspy32
+File Transfer --> pspy64
+chmod 755 pspy32 pspy64
+./pspy<32/64>
+
+What does the local network look like?
+netstat -antup
+netstat -tunlp
+
+Is anything vulnerable running as root?
+ps aux |grep -i 'root' --color=auto
+
+MYSQL Credentials? Root Unauthorized Access?
+mysql -uroot -p
+Enter Password:
+root : root
+root : toor
+root :
+
+S1REN would take a quick look at etc to see if any user-level people did special things:
+cd /etc/
+ls -lsaht
+Anything other than root here?
+• Any config files left behind?
+→ ls -lsaht |grep -i ‘.conf’ --color=auto
+
+• If we have root priv information disclosure - are there any .secret in /etc/ files?
+→ ls -lsaht |grep -i ‘.secret’ --color=aut
+
+SSH Keys I can use perhaps for even further compromise?
+ls -lsaR /home/
+
+Quick look in:
+ls -lsaht /var/lib/
+ls -lsaht /var/db/
+
+Quick look in:
+ls -lsaht /opt/
+ls -lsaht /tmp/
+ls -lsaht /var/tmp/
+ls -lsaht /dev/shm/

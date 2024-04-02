@@ -1,0 +1,18 @@
+Compilation?
+file /bin/bash
+uname -a
+cat /etc/*-release
+cat /etc/issue
+
+
+What Arch?
+file /bin/bash
+
+
+Kernel?
+uname -a
+
+
+Issue/Release?
+cat /etc/issue
+cat /etc/*-release

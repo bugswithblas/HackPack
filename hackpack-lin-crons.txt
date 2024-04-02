@@ -1,0 +1,13 @@
+Cron.
+crontab –u root –l
+
+Look for unusual system-wide cron jobs:
+cat /etc/crontab
+ls /etc/cron.*
+
+Bob is a user on this machine. What is every single file he has ever created?
+find / -user miguel 2>/dev/null
+
+Any mail? mbox in User $HOME directory?
+cd /var/mail/
+ls -lsaht

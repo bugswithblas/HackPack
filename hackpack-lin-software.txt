@@ -1,0 +1,11 @@
+which gcc
+which cc
+which python
+which perl
+which wget
+which curl
+which fetch
+which nc
+which ncat
+which nc.traditional
+which socat
