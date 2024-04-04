@@ -1,0 +1,10 @@
+rpcclient -U user%password@ip
+
+srvinfo       Enumerate server
+querydominfo  Enumerate domain
+enumdomusers  Enumerate domain users
+enumdomgroups Enumerate domain groups
+queryuser username  Enumerate domain user
+
+
+setuserinfo2 username 23 'newpassword'
