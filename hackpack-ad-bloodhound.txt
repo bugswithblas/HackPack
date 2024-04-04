@@ -8,3 +8,9 @@ Invoke-BloodHound -CollectionMethod All -OutputDirectory C:\Users\mary.williams\
 kali:
 sudo neo4j start
 bloodhound
+
+
+#PYTHON BLOODHOUND
+sudo apt install bloodhound.py
+#ADD DC as nameserver and search to resolv.conf
+bloodhound-python -u user -p 'password' -ns 10.0.0.0 -d domain.local -c all
