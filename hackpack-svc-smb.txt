@@ -29,6 +29,7 @@ smbclient -U 'guest%' -L //
 
 #MOUNT SHARE LOCALLY
 sudo mount -t cifs -o 'user=guest' //IP/share /mnt/share
+sudo mount -t cifs -o 'username=user,password=password' //IP/sharename /mnt
 ls /mnt/share -laR #recurse listing of all dirs
 
 #Check permissions on share
