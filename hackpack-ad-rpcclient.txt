@@ -1,0 +1,31 @@
+#Enumeration of Groups
+enumdomgroups
+querygroup <0xrid> #details
+querygroupmem <0xrid> #members
+
+
+#Enumeration of Domains
+enumdomains
+lsaquery #get domain SID
+querydominfo #domain info
+
+#Enumeration of Shares
+netshareenumall
+netsharegetinfo <share>
+lookupnames <username> #sid of username
+lsaenumsid #more sids
+lookupsids <sid>.
+
+rpcclient -U '' $IP
+enumdomusers > users
+cat users | awk -F\[ '{print $2}' | awk -F\] '{print $1}' > users_sort.txt
+
+
+# Users' RIDs-forced
+for i in $(seq 500 1100); do
+    rpcclient -N -U "" [IP_ADDRESS] -c "queryuser 0x$(printf '%x\n' $i)" | grep "User Name\|user_rid\|group_rid" && echo "";
+done
+
+# samrdump.py can also serve this purpose
+
+
