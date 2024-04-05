@@ -7,7 +7,8 @@ net accounts
 (Get-DomainPolicy)."SystemAccess" #From powerview
 
 crackmapexec <IP> -u 'user' -p 'password' --pass-pol
-
+crackmapexec smb --pass-pol $IP
+ 
 ldapsearch -h 10.10.10.10 -x -b "DC=DOMAIN_NAME,DC=LOCAL" -s sub "*" | grep -m 1 -B 10 pwdHistoryLength
 
 
