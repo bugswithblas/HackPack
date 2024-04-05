@@ -1,0 +1,22 @@
+1. Scan ports -> potential vulnerability to exploit
+2. DNS enum
+3. Anonymous/Null/Guest SMB/LDAP/RPC
+4. Enumerate users with kerbrute
+#If Get some users
+5. ASREP Roast
+6. Password Spray
+7. Spoof hashes impacket-smbserver
+8. Steal NTLM's
+9. Enumerate with cmd/powershell/powerview/bloodhound
+10. Kerberoast
+11. RDP/SSH/FTP/WIN-RM/PS-EXEC
+12. Winpeas & PrivEsc
+13. Current Session Tickets
+#If Get anything
+14. Hash extraction
+15. Overpass the Hash/Pass the key
+16. Pass the Ticket
+17. Reuse credentials
+18. Silver Ticket
+19. Golden Ticket
+20. DC Shadow
