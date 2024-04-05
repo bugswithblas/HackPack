@@ -2,3 +2,7 @@ Get-ChildItem -Path C:\ -Include *.kdbx -File -Recurse -ErrorAction SilentlyCont
 Get-ChildItem -Path C:\Users -Include *.txt,*.ini -File -Recurse -ErrorAction SilentlyContinue
 Get-ChildItem -Path C:\Users -Include *.pdf,*.xls,*.xlsx,*.doc,*.docx,*.log,*.exe -File -Recurse -ErrorAction SilentlyContinue 
 
+
+#gci is an alias for Get-ChildItem
+gci -Hidden #show hidden files
+
