@@ -14,7 +14,12 @@ netshareenumall
 netsharegetinfo <share>
 lookupnames <username> #sid of username
 lsaenumsid #more sids
-lookupsids <sid>.
+lookupsids <sid>
+
+#Enumeration of Users
+enumdousers # list of ad users
+querydisinfo #get descriptions of users
+
 
 rpcclient -U '' $IP
 enumdomusers > users
