@@ -1,0 +1,4 @@
+#TCP
+- nmap -sV -sC -O -p- -n -Pn $ip
+- nmap -sV -O -T4 -n -Pn -sC $ip --open
+- sudo nmap -sV -sC -O -T4 -n -Pn -p- $ip --open
